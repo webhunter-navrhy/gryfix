@@ -208,7 +208,7 @@
     <div class="galerie">
       {% for m in data.misto %}
       <figure class="galerie__f galerie__f--{{ loop.index }} odhal">
-        {{ img(m.f, m.alt, sizes='(min-width: 64rem) 50vw, 100vw') }}
+        {{ img(m.f, m.alt, sizes=('(min-width: 64rem) 55vw, 100vw' if loop.first else '(min-width: 64rem) 40vw, 50vw')) }}
         <figcaption>{{ m.p }}</figcaption>
       </figure>
       {% endfor %}
