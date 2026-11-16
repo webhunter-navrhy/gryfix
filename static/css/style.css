@@ -682,7 +682,7 @@ h2 { font-size: clamp(2.5rem, 5.6vw, 5rem); line-height: 1; letter-spacing: -.04
   .kontakt { gap: 0 1rem; font-size: 1rem; }
   .kontakt__foto { height: 14rem; }
   .kontakt__udaje { padding-bottom: 1.1rem; min-width: 0; }
-  .kontakt__udaje a { overflow-wrap: anywhere; }
+  .kontakt__udaje a { overflow-wrap: break-word; }
   .den__foto { height: 8.5rem; margin-top: 1rem; }
 }
 
@@ -716,3 +716,138 @@ h2 { font-size: clamp(2.5rem, 5.6vw, 5rem); line-height: 1; letter-spacing: -.04
 }
 
 .nw { white-space: nowrap; }
+
+/* ================= kolo 4 (16. 11.): syté bloky, Kutná Hora přes celou šířku, výrazné písmo ke znaku ================= */
+.velke { text-transform: uppercase; }
+.hero__h1 { text-transform: uppercase; font-weight: 600; font-size: clamp(3rem, 7.4vw, 7.6rem); line-height: .94; letter-spacing: -.045em; }
+.hero__h1-b { font-weight: 600; }
+
+/* vize – sytý tyrkys */
+.vize { background: var(--tyrkys); color: var(--noc); isolation: isolate; }
+.vize::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--noc); opacity: .09;
+  -webkit-mask: url(../img/topo-b.svg) center / cover no-repeat; mask: url(../img/topo-b.svg) center / cover no-repeat;
+}
+.vize .stitek { background: var(--noc); color: var(--tyrkys); padding: .55rem .8rem .5rem; border-radius: 2px; }
+.vize__h2 { color: var(--noc); font-size: clamp(2.6rem, 4.8vw, 4.6rem); font-weight: 600; letter-spacing: -.045em; line-height: .98; max-width: 15ch; }
+.vize__odst { color: var(--noc); }
+.vize__odst p { color: var(--noc); }
+.vize__odst p:first-child { color: var(--noc); font-weight: 500; }
+.vize__foto::before { background: var(--svestka); left: -2.25rem; bottom: -2.25rem; }
+.vize__foto img { box-shadow: 0 40px 80px -40px rgba(34, 14, 31, .55); }
+
+/* nadpisy sekcí jedním tvarem se znakem */
+.schopnosti h2, .programy h2, .okruhy h2, .poptavka h2 { text-transform: uppercase; font-weight: 600; letter-spacing: -.045em; line-height: .95; }
+.schopnosti h2, .okruhy h2 { font-size: clamp(2.4rem, 4.6vw, 4.3rem); }
+.programy h2 { font-size: clamp(2.6rem, 6vw, 5.6rem); }
+.poptavka h2 { font-size: clamp(2.4rem, 4.6vw, 4.3rem); }
+.panel__nazev { text-transform: uppercase; font-weight: 600; letter-spacing: -.05em; }
+.panel__nazev span { font-weight: 300; text-transform: none; letter-spacing: -.04em; }
+.tab__nazev { text-transform: uppercase; font-weight: 600; letter-spacing: -.04em; }
+
+/* schopnosti – větší hra */
+.schopnosti__hra { max-width: none; width: calc(100% + 3rem); margin-top: 2rem; }
+
+/* programy – lidé větší, stojí na lince */
+.den__foto { height: clamp(9rem, 15vw, 15rem); margin-top: 2.5rem; }
+.den__foto img { filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .28)); }
+
+/* ---------- místo: Kutná Hora přes celou fotku ---------- */
+.misto { position: relative; }
+.misto__uvod { position: relative; min-height: min(92svh, 60rem); display: flex; align-items: flex-end; color: var(--krem); overflow: clip; isolation: isolate; background: var(--noc); }
+.misto__foto { position: absolute; inset: 0; z-index: -1; }
+.misto__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.misto__foto::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(34, 14, 31, .92) 0%, rgba(34, 14, 31, .55) 30%, rgba(34, 14, 31, 0) 58%),
+              linear-gradient(180deg, rgba(34, 14, 31, .35) 0%, rgba(34, 14, 31, 0) 20%);
+}
+.misto__foto figcaption {
+  position: absolute; right: var(--okraj); top: calc(var(--hlavicka) + 1.5rem); z-index: 1; background: var(--zlata); color: var(--noc);
+  font: 600 .72rem/1 var(--telo); text-transform: uppercase; letter-spacing: .1em; padding: .55rem .75rem .5rem; border-radius: 2px;
+}
+.misto__hlava { display: block; margin: 0 auto; padding-bottom: clamp(2rem, 5vw, 3.5rem); }
+.misto .misto__h2 {
+  color: var(--krem); text-transform: uppercase; font-weight: 600; font-size: clamp(3.6rem, 13vw, 14rem);
+  line-height: .8; letter-spacing: -.06em; margin-left: -.05em;
+}
+.misto__fakta { display: flex; flex-wrap: wrap; gap: .75rem 2.5rem; margin-top: clamp(1.5rem, 3vw, 2.25rem); }
+.misto__fakta li { color: var(--krem); border-left-color: var(--tyrkys); font-size: clamp(1rem, 1.3vw, 1.2rem); }
+.misto__dole { padding-block: clamp(.75rem, 1.5vw, 1.25rem) var(--sekce); }
+.fm { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: clamp(16rem, 34vw, 31rem) clamp(14rem, 24vw, 22rem); gap: clamp(.6rem, 1.2vw, 1rem); margin-inline: calc(50% - min(50vw - 1rem, 52rem)); }
+.fm__f { position: relative; overflow: hidden; border-radius: 6px; margin: 0; }
+.fm__f img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.fm__f:hover img { transform: scale(1.045); }
+.fm__f::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(0deg, rgba(34, 14, 31, .55), transparent); pointer-events: none; }
+.fm__f figcaption {
+  position: absolute; z-index: 1; left: .9rem; bottom: .9rem; background: var(--zlata); color: var(--noc);
+  font: 600 .72rem/1 var(--telo); text-transform: uppercase; letter-spacing: .1em; padding: .55rem .75rem .5rem; border-radius: 2px;
+}
+.fm__f--1 { grid-column: 1 / 8; }
+.fm__f--2 { grid-column: 8 / 13; }
+.fm__f--3 { grid-column: 1 / 5; }
+.fm__f--4 { grid-column: 5 / 9; }
+.fm__f--5 { grid-column: 9 / 13; }
+
+/* ---------- poptávka: Valérie v životní velikosti ---------- */
+.poptavka__mrizka { align-items: end; }
+.kontakt {
+  position: relative; margin-top: clamp(10rem, 13vw, 12rem); display: block; border: 0; border-radius: 10px;
+  background: var(--svestka); color: var(--krem); padding: 1.75rem 1.5rem 1.75rem clamp(8.6rem, 10.5vw, 9.6rem); min-height: 15rem; isolation: isolate;
+}
+.kontakt::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--tyrkys); opacity: .14;
+  -webkit-mask: url(../img/topo-a.svg) center / cover no-repeat; mask: url(../img/topo-a.svg) center / cover no-repeat;
+}
+.kontakt__foto { position: absolute; left: clamp(1rem, 2vw, 1.75rem); bottom: 0; height: clamp(22rem, 28vw, 25rem); margin: 0; }
+.kontakt__foto img { height: 100%; width: auto; filter: drop-shadow(0 20px 24px rgba(0, 0, 0, .25)); }
+.kontakt__udaje { padding: 0; gap: .4rem; }
+.kontakt__kdo { color: rgba(249, 245, 237, .72); }
+.kontakt__jmeno { color: var(--krem); font-size: clamp(1.3rem, 1.8vw, 1.6rem); }
+.kontakt a { border-bottom-color: var(--tyrkys); }
+.kontakt a:hover { color: var(--tyrkys); }
+.kontakt__web { color: rgba(249, 245, 237, .72); }
+.kontakt__udaje { min-width: 0; font-size: 1rem; }
+.kontakt__udaje a { overflow-wrap: anywhere; }
+
+/* ---------- ostré odhalení fotek scrollem ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .vyjev img { animation: vyjev linear both; animation-timeline: view(); animation-range: entry 5% entry 85%; }
+    .vize__foto.vyjev img { animation-name: vyjev-l; }
+    .okruhy__foto.vyjev img { animation-name: vyjev-p; }
+    @keyframes vyjev { from { clip-path: inset(18% 0 0 0); transform: scale(1.12); } to { clip-path: inset(0 0 0 0); transform: scale(1); } }
+    @keyframes vyjev-l { from { clip-path: inset(0 0 0 35%); } to { clip-path: inset(0 0 0 0); } }
+    @keyframes vyjev-p { from { clip-path: inset(0 35% 0 0); } to { clip-path: inset(0 0 0 0); } }
+    .misto__foto img { animation: misto-zoom linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+    @keyframes misto-zoom { from { transform: scale(1.14); } to { transform: scale(1); } }
+    .misto__h2 { animation: misto-h linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+    @keyframes misto-h { from { transform: translateY(35%); } to { transform: none; } }
+  }
+}
+
+@media (max-width: 64rem) {
+  .vize__foto::before { left: -1.75rem; bottom: -1.75rem; }
+  .schopnosti__hra { width: 100%; max-width: 40rem; }
+  .poptavka__mrizka { align-items: start; }
+  .kontakt { max-width: 36rem; }
+}
+@media (max-width: 47.5rem) {
+  .hero__h1 { font-size: clamp(2.5rem, 11.4vw, 3.8rem); }
+  .vize__h2 { font-size: clamp(2.3rem, 10vw, 3rem); }
+  .vize__foto::before { left: -1.1rem; bottom: -1.1rem; }
+  .schopnosti h2, .okruhy h2, .poptavka h2 { font-size: clamp(2.1rem, 9.6vw, 2.8rem); }
+  .programy h2 { font-size: clamp(2.3rem, 10.4vw, 3rem); }
+  .misto__uvod { min-height: 88svh; }
+  .misto__foto img { object-position: 38% 50%; }
+  .misto .misto__h2 { font-size: clamp(3.3rem, 17.5vw, 5.2rem); line-height: .86; }
+  .misto__fakta { flex-direction: column; gap: .6rem; }
+  .fm { grid-template-columns: 1fr 1fr; grid-template-rows: 15rem 11rem 13rem; margin-inline: 0; }
+  .fm__f--1 { grid-column: 1 / -1; }
+  .fm__f--2, .fm__f--3 { grid-column: auto; }
+  .fm__f--4, .fm__f--5 { grid-column: auto; }
+  .fm__f figcaption { left: .6rem; bottom: .6rem; font-size: .64rem; padding: .45rem .55rem .4rem; }
+  .kontakt { margin-top: 10rem; padding: 1.4rem 1.25rem 1.4rem 8.6rem; min-height: 13rem; }
+  .kontakt__foto { left: .6rem; height: 22rem; }
+  .den__foto { height: 10rem; }
+}
