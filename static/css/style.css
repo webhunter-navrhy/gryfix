@@ -168,6 +168,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .proverka li.je-overeno .proverka__box { background: var(--tyrkys); }
 .proverka li.je-overeno .proverka__box::after { content: ""; position: absolute; left: 4px; top: 0; width: 4px; height: 8px; border: solid var(--noc); border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .schopnosti__zaver { margin-top: 1.6rem; color: rgba(249, 245, 237, .7); }
+.schopnosti__hra { margin-top: 2.5rem; max-width: 32rem; }
+.schopnosti__hra img { width: 100%; height: auto; }
 
 .test { background: var(--noc); border: 1px solid rgba(249, 245, 237, .12); border-radius: 3px; overflow: hidden; }
 .test__hlava { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(249, 245, 237, .1); }
@@ -260,12 +262,20 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .panel__varianty { grid-row: 1 / span 2; grid-column: 3; display: flex; flex-direction: column; gap: 1rem; }
 .panel__mezititulek { font: 600 1.15rem/1.2 var(--display); height: calc(var(--hlava-dne) - 1rem); }
 .varianta { font-size: 1rem; padding-left: 1rem; border-left: 3px solid var(--noc); }
-.varianta em { display: block; font-style: normal; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; opacity: .7; margin: -.25rem 0 .5rem; }
-.rocni { margin-top: auto; background: var(--noc); color: var(--krem); padding: 1.4rem 1.5rem; border-radius: 3px; }
+.varianta span { display: block; margin-top: .3rem; font: 600 1.05rem/1.2 var(--display); }
+.rocni { position: relative; margin-top: auto; background: var(--noc); color: var(--krem); padding: 1.4rem 11.6rem 1.5rem 1.5rem; border-radius: 3px; }
+.rocni__foto { position: absolute; right: .6rem; bottom: 0; height: calc(100% + 2.6rem); max-height: 15rem; display: flex; align-items: flex-end; pointer-events: none; }
+.rocni__foto img { height: 100%; width: auto; max-width: none; }
+.rocni__stitek { color: rgba(249, 245, 237, .62); margin-bottom: .35rem; }
 .rocni__nazev { font: 600 1.3rem/1.2 var(--display); margin-bottom: .5rem; }
-.rocni p + p { font-size: .95rem; color: rgba(249, 245, 237, .8); }
+.rocni__nazev ~ p { font-size: .95rem; color: rgba(249, 245, 237, .8); }
+.rocni__nazev ~ p + p { margin-top: .5rem; }
 .rocni__cena { margin-top: .8rem; font: 600 1.1rem/1.2 var(--display) !important; color: var(--tyrkys) !important; }
 
+/* lidé z programu: postavy stojí na lince patičky panelu */
+.den__foto { height: clamp(7rem, 11.5vw, 11rem); margin-top: 2rem; display: flex; justify-content: center; align-items: flex-end; }
+.den__foto img { height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: center bottom; }
+.osa:has(.den__foto) + .panel__pata, .osa:has(.den__foto) + .panel__varianty + .panel__pata { margin-top: 0; }
 .panel__pata { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem 3rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--jemna); }
 .panel__pata p { max-width: 40rem; font-size: .95rem; opacity: .85; }
 .tl--panel { flex: none; background: var(--na); color: var(--barva); }
@@ -334,7 +344,11 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .poptavka__mrizka { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
 .poptavka h2 { color: var(--svestka); max-width: 12ch; }
 .poptavka__perex { margin-top: 1.5rem; color: var(--text-2); max-width: 26rem; }
-.kontakt { margin-top: 2.5rem; padding-top: 1.75rem; border-top: 1px solid var(--linka); display: grid; gap: .35rem; font: 500 1.1rem/1.4 var(--display); }
+.kontakt { margin-top: 2.5rem; border-bottom: 1px solid var(--linka); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 clamp(1.25rem, 3vw, 2rem); align-items: end; font: 500 1.1rem/1.4 var(--display); }
+.kontakt__foto { height: clamp(17rem, 24vw, 21rem); margin-bottom: -1px; }
+.kontakt__foto img { height: 100%; width: auto; max-width: none; }
+.kontakt__udaje { display: grid; gap: .35rem; padding-bottom: 1.5rem; }
+.kontakt__kdo { font: 400 .9rem/1.3 var(--telo); color: var(--text-2); margin-bottom: .2rem; }
 .kontakt__jmeno { font-size: 1.3rem; font-weight: 600; color: var(--svestka); margin-bottom: .3rem; }
 .kontakt a { text-decoration: none; border-bottom: 1.5px solid var(--tyrkys); justify-self: start; }
 .kontakt__web { color: var(--text-2); font-weight: 400; font-size: 1rem; }
@@ -450,6 +464,13 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .formular button[type="submit"] { width: 100%; }
   .paticka__in, .paticka__sloupce { grid-template-columns: 1fr; }
   .odbornost__gryf { width: 30rem; left: -10rem; top: 30%; }
+  .rocni { padding-right: 7.4rem; }
+  .rocni__foto { right: .2rem; max-height: 11.5rem; }
+  .kontakt { gap: 0 1rem; font-size: 1rem; }
+  .kontakt__foto { height: 14rem; }
+  .kontakt__udaje { padding-bottom: 1.1rem; min-width: 0; }
+  .kontakt__udaje a { overflow-wrap: anywhere; }
+  .den__foto { height: 8.5rem; margin-top: 1rem; }
 }
 
 .nw { white-space: nowrap; }

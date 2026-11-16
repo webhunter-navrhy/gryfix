@@ -47,6 +47,7 @@
         {% for s in o.schopnosti %}<li data-schopnost="{{ s }}"><span class="proverka__box" aria-hidden="true"></span>{{ s|nb }}</li>{% endfor %}
       </ul>
       <p class="schopnosti__zaver">…a proměňte je v cenné zkušenosti.</p>
+      <figure class="schopnosti__hra odhal">{{ img('lide-hra.png', 'Team u stolu řeší kooperační hru s kartičkami symbolů', sizes='(min-width: 64rem) 34vw, 90vw') }}</figure>
     </div>
 
     <div class="test" data-test data-sekundy="{{ o.test.sekundy }}">
@@ -137,15 +138,19 @@
             </li>
             {% endfor %}
           </ol>
+          {% if d.foto is defined %}<figure class="den__foto">{{ img(d.foto.f, d.foto.alt, sizes='(min-width: 52rem) 26vw, 80vw') }}</figure>{% endif %}
         </div>
         {% endfor %}
         {% if p.varianty is defined %}
         <div class="panel__varianty">
           <p class="panel__mezititulek">Jak to může běžet</p>
-          {% for v in p.varianty %}<p class="varianta">{% if not loop.first %}<em>nebo</em>{% endif %}{{ v|nb }}</p>{% endfor %}
+          {% for v in p.varianty %}<p class="varianta">{{ v|nb }}<span>{{ p.cena }} {{ p.dph }}</span></p>{% endfor %}
           <div class="rocni">
+            <figure class="rocni__foto">{{ img(p.rocni.foto.f, p.rocni.foto.alt, sizes='12rem') }}</figure>
+            <p class="stitek rocni__stitek">nebo</p>
             <p class="rocni__nazev">{{ p.rocni.nazev }}</p>
             <p>{{ p.rocni.text|nb }}</p>
+            <p>{{ p.rocni.text2|nb }}</p>
             <p class="rocni__cena">{{ p.rocni.cena }}</p>
           </div>
         </div>
@@ -234,10 +239,14 @@
       <h2>Domluvme program pro váš team</h2>
       <p class="poptavka__perex">Napište, kolik vás bude a co od teambuildingu čekáte. Program připravíme na míru.</p>
       <div class="kontakt">
-        <p class="kontakt__jmeno">{{ site.kontakt.osoba }}</p>
-        <p><a href="tel:+420{{ site.kontakt.telefon|replace(' ', '') }}">{{ site.kontakt.telefon }}</a></p>
-        <p><a href="mailto:{{ site.kontakt.email }}">{{ site.kontakt.email }}</a></p>
-        <p class="kontakt__web">{{ site.kontakt.web }}</p>
+        <figure class="kontakt__foto">{{ img('valerie-cizkova.png', site.kontakt.osoba, sizes='9rem') }}</figure>
+        <div class="kontakt__udaje">
+          <p class="kontakt__kdo">Program s vámi připraví</p>
+          <p class="kontakt__jmeno">{{ site.kontakt.osoba }}</p>
+          <p><a href="tel:+420{{ site.kontakt.telefon|replace(' ', '') }}">{{ site.kontakt.telefon }}</a></p>
+          <p><a href="mailto:{{ site.kontakt.email }}">{{ site.kontakt.email }}</a></p>
+          <p class="kontakt__web">{{ site.kontakt.web }}</p>
+        </div>
       </div>
     </div>
     <form class="formular" method="post" data-endpoint="{{ site.formular.endpoint }}" data-demo="{{ 1 if site.formular.demo or not site.formular.endpoint else 0 }}">

@@ -48,14 +48,12 @@
       "do": 19,
       "n": "večeře",
       "t": "j"
-     },
-     {
-      "od": 19,
-      "do": 21,
-      "n": "volný program, stolní hry",
-      "t": "v"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-alpha-1.png",
+     "alt": "Team s batohy se v terénu radí nad mapou"
+    }
    },
    {
     "n": "Den 2",
@@ -109,7 +107,11 @@
       "n": "kreativní umělecké studio",
       "t": "p"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-alpha-2.png",
+     "alt": "Team u stolu skládá dřevěné dílky kooperační hry"
+    }
    },
    {
     "n": "Den 3",
@@ -127,7 +129,11 @@
       "n": "psychodiagnostika a vyhodnocení",
       "t": "p"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-alpha-3.png",
+     "alt": "Instruktor vede rozbor s teamem, jeden z účastníků drží flipchart"
+    }
    }
   ]
  },
@@ -181,7 +187,11 @@
       "n": "osobnostní testy a sebepoznání",
       "t": "p"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-beta-1.png",
+     "alt": "Instruktor ukazuje na figuríně resuscitaci, team přihlíží"
+    }
    },
    {
     "n": "Den 2",
@@ -229,7 +239,11 @@
       "n": "večeře",
       "t": "j"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-beta-2.png",
+     "alt": "Dvě skupinky u herních pultů s bzučáky"
+    }
    },
    {
     "n": "Den 3",
@@ -247,7 +261,11 @@
       "n": "psychodiagnostika a vyhodnocení",
       "t": "p"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-beta-3.png",
+     "alt": "Team u dlouhého stolu při společné poradě"
+    }
    }
   ]
  },
@@ -259,7 +277,7 @@
   "cena": "69 000 Kč",
   "dph": "bez DPH",
   "vcene": "Přijedeme za vámi. Možnost customizace programu.",
-  "perex": "Celodenní zážitkové školení přímo u vás ve firmě. Jednorázově, nebo jako pravidelné měsíční školení.",
+  "perex": "Celodenní zážitkové školení přímo u vás ve firmě. Jednorázově, nebo jako roční spolupráce.",
   "dny": [
    {
     "n": "Program on site",
@@ -289,17 +307,25 @@
       "n": "základy deeskalace a vyjednávání",
       "t": "p"
      }
-    ]
+    ],
+    "foto": {
+     "f": "lide-charlie-1.png",
+     "alt": "Recepce firmy, kde instruktor začíná školení on site"
+    }
    }
   ],
   "varianty": [
-   "Jednorázové celodenní zážitkové školení",
-   "Pravidelné měsíční školení, které postupně detailně pokryje 12 oblastí bezpečnosti, připomíná klíčové principy a navazuje na už získané znalosti a dovednosti"
+   "Jednorázové celodenní zážitkové školení"
   ],
   "rocni": {
    "nazev": "Roční spolupráce",
-   "text": "12 celodenních zážitkových školení on site, nebo v připraveném prostoru. 12 oblastí bezpečnosti.",
-   "cena": "od 490 000 Kč bez DPH"
+   "text": "Pravidelné měsíční školení, které postupně detailně pokryje 12 oblastí bezpečnosti, zajistí připomínání klíčových principů a navazuje na už získané znalosti a dovednosti.",
+   "text2": "12 celodenních zážitkových školení on site, nebo v připraveném prostoru. 12 oblastí bezpečnosti.",
+   "cena": "od 490 000 Kč bez DPH",
+   "foto": {
+    "f": "lide-charlie-rocni.png",
+    "alt": "Instruktor s nárazníkovým lapačem v obranném postoji"
+   }
   }
  }
 ]
