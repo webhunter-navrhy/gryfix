@@ -904,3 +904,27 @@ h2 { font-size: clamp(2.5rem, 5.6vw, 5rem); line-height: 1; letter-spacing: -.04
 .formular { box-shadow: 0 0 0 1px var(--linka); }
 .souhrn .tl[aria-disabled="true"] { background: rgba(34, 14, 31, .12); border: 0; color: rgba(34, 14, 31, .7); }
 .hero .tl--obrys { padding: .6rem 0 .45rem; }
+/* ================= kolo 6 (16. 11.): pryč zlaté štítky a nadtitulky ================= */
+main .stitek:not(.rocni__stitek) { display: none; }
+.paticka__sloupce .stitek { background: none; padding: 0; box-shadow: none; color: rgba(249, 245, 237, .5); font-weight: 500; letter-spacing: .08em; }
+.misto__foto figcaption { background: none; box-shadow: none; padding: 0; color: var(--krem); font: 500 .95rem/1.2 var(--display); letter-spacing: 0; text-transform: none; text-shadow: 0 1px 12px rgba(0,0,0,.45); }
+.misto__foto figcaption { display: none; }
+@media (min-width: 64rem) {
+  .okruhy__text { position: sticky; top: 7rem; }
+  .okruhy h2 { font-size: clamp(3.5rem, 6.2vw, 6rem); }
+  .schopnosti__mrizka { align-items: start; }
+  .test { position: sticky; top: 7rem; margin-top: 2rem; }
+}
+
+/* kolo 6: galerie místa jako souvislá fotostěna navazující na Kutnou Horu */
+.misto__dole { padding-top: 4px; }
+.fm { margin-inline: calc(50% - 50vw); gap: 4px; grid-template-rows: clamp(16rem, 36vw, 34rem) clamp(14rem, 26vw, 24rem); }
+.fm__f { border-radius: 0; }
+.fm__f::after { inset: 45% 0 0; background: linear-gradient(0deg, rgba(34, 14, 31, .78), rgba(34, 14, 31, 0)); }
+.fm__f figcaption { left: clamp(1rem, 2vw, 1.75rem); bottom: clamp(.9rem, 1.8vw, 1.5rem); font: 600 clamp(.85rem, 1.1vw, 1.05rem)/1.2 var(--display); text-transform: uppercase; letter-spacing: .02em; padding-left: .8rem; border-left: 3px solid var(--tyrkys); }
+@media (max-width: 47.99rem) {
+  .fm { margin-inline: calc(50% - 50vw); }
+  .fm__f figcaption { font-size: .72rem; padding-left: .55rem; border-left-width: 2px; }
+}
+.misto { overflow-x: clip; }
+.misto { background: var(--noc); } .misto__dole { padding-bottom: 0; }

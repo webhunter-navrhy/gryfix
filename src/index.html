@@ -9,17 +9,13 @@
   <div class="hero__foto">{{ img('les-mapa.jpg', 'Team s mapou plánuje trasu v lese', sizes='100vw') }}</div>
   <div class="hero__hledac" aria-hidden="true"><i></i><b></b></div>
   <div class="wrap hero__in">
-    <p class="stitek stitek--zlaty">Zážitkové teambuildingy · Kutná Hora</p>
-    <h1 class="hero__h1"><span>{{ o.h1[0] }}</span> <span class="hero__h1-b">{{ o.h1[1] }}</span></h1>
+        <h1 class="hero__h1"><span>{{ o.h1[0] }}</span> <span class="hero__h1-b">{{ o.h1[1] }}</span></h1>
     <p class="hero__uvod">{{ o.uvod|nb }}</p>
     <div class="hero__akce">
       <a href="#programy" class="tl tl--tyrkys">Vybrat program</a>
       <a href="#okruhy" class="tl tl--obrys">Sestavit vlastní</a>
     </div>
   </div>
-  <ul class="hero__fakta wrap" role="list">
-    {% for f in o.misto_fakta %}<li>{{ f }}</li>{% endfor %}
-  </ul>
 </section>
 
 {# ---------- VIZE ---------- #}
@@ -174,7 +170,6 @@
       <p class="stitek stitek--zlaty">Tematické okruhy</p>
       <h2 class="odhal">Sestavte si vlastní program</h2>
       <p class="okruhy__perex odhal">…a užijte si teambuilding po svém, pod vedením profíků z&nbsp;oboru. Zaškrtněte, co vás zajímá, výběr se přenese do poptávky.</p>
-      <figure class="okruhy__foto vyjev">{{ img('hra-telefony.jpg', 'Kooperační komunikační hra s telefony a symboly', sizes='(min-width: 64rem) 36vw, 100vw') }}</figure>
     </div>
     <div class="okruhy__vyber">
       <ul class="vyber" role="list">
