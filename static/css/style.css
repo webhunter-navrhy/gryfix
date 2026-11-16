@@ -928,3 +928,10 @@ main .stitek:not(.rocni__stitek) { display: none; }
 }
 .misto { overflow-x: clip; }
 .misto { background: var(--noc); } .misto__dole { padding-bottom: 0; }
+
+/* 16. 11.: háčky a čárky verzálek nesmí narážet do řádku nad nimi */
+.hero__h1 { line-height: 1.06; }
+.hero__h1 > * { display: block; }
+.schopnosti h2, .programy h2, .okruhy h2, .poptavka h2, .vize__h2 { line-height: 1.06; }
+.panel__nazev { line-height: 1.02; }
+.paticka__claim { line-height: 1; }
