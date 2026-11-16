@@ -35,8 +35,9 @@ body {
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.04; letter-spacing: -.025em; margin: 0; text-wrap: balance; }
-h2 { font-size: clamp(2.1rem, 4.6vw, 4rem); }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.04; letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2.2rem, 5vw, 4.4rem); }
+h2 b { font-weight: 650; }
 p { margin: 0; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 figure { margin: 0; }
@@ -78,8 +79,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   background: linear-gradient(rgba(34, 14, 31, .7), rgba(34, 14, 31, 0));
   transition: background-color .3s, box-shadow .3s;
 }
-.hlavicka.je-dole { background: rgba(34, 14, 31, .94); box-shadow: 0 1px 0 rgba(249, 245, 237, .08); }
-@supports (backdrop-filter: blur(8px)) { .hlavicka.je-dole { background: rgba(34, 14, 31, .86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); } }
+.hlavicka.je-dole { background: var(--noc); box-shadow: 0 1px 0 rgba(249, 245, 237, .08); }
 .hlavicka__in { height: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--okraj); display: flex; align-items: center; gap: 2rem; }
 .logo { display: flex; align-items: center; min-height: 2.75rem; flex: none; }
 .logo img { height: 2.9rem; width: auto; }
@@ -131,9 +131,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     linear-gradient(0deg, rgba(34, 14, 31, .9) 0%, rgba(34, 14, 31, 0) 32%);
 }
 .hero__in { padding-top: calc(var(--hlavicka) + 3rem); padding-bottom: clamp(2.5rem, 6vh, 4.5rem); }
-.hero__h1 { font-size: clamp(2.7rem, 5.6vw, 5.4rem); font-weight: 600; line-height: .98; letter-spacing: -.035em; max-width: 12ch; }
+.hero__h1 { font-size: clamp(2.8rem, 6.2vw, 6rem); font-weight: 650; line-height: .98; letter-spacing: -.045em; max-width: 12ch; }
 .hero__h1 span { display: block; }
-.hero__h1-b { color: var(--tyrkys); }
+.hero__h1-b { color: var(--tyrkys); font-weight: 300; letter-spacing: -.04em; }
 .hero__uvod { max-width: 34rem; margin-top: 1.6rem; font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: rgba(249, 245, 237, .86); }
 .hero__akce { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.1rem; }
 .hero__fakta {
@@ -150,14 +150,22 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 /* ---------- vize ---------- */
-.vize__mrizka { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
-.vize__h2 { font-size: clamp(2rem, 4.2vw, 3.7rem); color: var(--svestka); max-width: 18ch; }
-.vize__odst { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2.5rem; margin-top: 2.5rem; color: var(--text-2); }
-.vize__odst p:first-child { grid-column: 1 / -1; font-size: 1.2rem; color: var(--text); max-width: 40rem; }
-.vize__foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; border-radius: 2px; }
+.vize__mrizka { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 5rem) clamp(2.5rem, 6vw, 6rem); align-items: end; }
+.vize__h2 { font-size: clamp(2.3rem, 5vw, 4.6rem); font-weight: 400; color: var(--svestka); max-width: 15ch; }
+.vize__odst { display: grid; gap: 1.1rem; color: var(--text-2); padding-bottom: .4rem; }
+.vize__odst p:first-child { font: 400 clamp(1.15rem, 1.5vw, 1.35rem)/1.45 var(--display); letter-spacing: -.01em; color: var(--text); padding-left: 1.1rem; border-left: 3px solid var(--tyrkys); }
+.vize__foto { grid-column: 1 / -1; position: relative; }
+.vize__foto img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 45%; border-radius: 3px; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .vize__foto img { animation: vize-otevri linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    @keyframes vize-otevri { from { clip-path: inset(0 7% round 3px); } to { clip-path: inset(0 0 round 3px); } }
+  }
+}
 
 /* ---------- schopnosti + test ---------- */
-.schopnosti__mrizka { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+.schopnosti__mrizka { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+.schopnosti .test { position: sticky; top: calc(var(--hlavicka) + 2rem); margin-top: 2.6rem; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .55); }
 .schopnosti h2 { max-width: 12ch; }
 .proverka { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; margin-top: 2.5rem; }
 .proverka li {
@@ -175,7 +183,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .test__hlava { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(249, 245, 237, .1); }
 .test__nazev { font: 600 1rem/1.2 var(--display); }
 .test__krok { font-size: .85rem; color: rgba(249, 245, 237, .62); }
-.test__plocha { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+.test__plocha { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
 .test__foto, .test__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .test__foto { transition: filter .5s, opacity .5s; }
 .test[data-stav="start"] .test__foto { filter: blur(6px) brightness(.55); }
@@ -345,11 +353,11 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .poptavka h2 { color: var(--svestka); max-width: 12ch; }
 .poptavka__perex { margin-top: 1.5rem; color: var(--text-2); max-width: 26rem; }
 .kontakt { margin-top: 2.5rem; border-bottom: 1px solid var(--linka); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 clamp(1.25rem, 3vw, 2rem); align-items: end; font: 500 1.1rem/1.4 var(--display); }
-.kontakt__foto { height: clamp(17rem, 24vw, 21rem); margin-bottom: -1px; }
+.kontakt__foto { height: clamp(20rem, 30vw, 27rem); margin-bottom: -1px; }
 .kontakt__foto img { height: 100%; width: auto; max-width: none; }
 .kontakt__udaje { display: grid; gap: .35rem; padding-bottom: 1.5rem; }
 .kontakt__kdo { font: 400 .9rem/1.3 var(--telo); color: var(--text-2); margin-bottom: .2rem; }
-.kontakt__jmeno { font-size: 1.3rem; font-weight: 600; color: var(--svestka); margin-bottom: .3rem; }
+.kontakt__jmeno { font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -.02em; color: var(--svestka); margin-bottom: .3rem; }
 .kontakt a { text-decoration: none; border-bottom: 1.5px solid var(--tyrkys); justify-self: start; }
 .kontakt__web { color: var(--text-2); font-weight: 400; font-size: 1rem; }
 
@@ -406,7 +414,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 /* ---------- tablet ---------- */
 @media (max-width: 64rem) {
   .vize__mrizka, .schopnosti__mrizka, .okruhy__mrizka, .odbornost__mrizka, .poptavka__mrizka { grid-template-columns: 1fr; }
+  .vize__foto { grid-column: 1; }
   .vize__foto img { aspect-ratio: 16 / 10; }
+  .vize__mrizka { align-items: start; }
+  .schopnosti .test { position: static; margin-top: 0; }
   .schopnosti h2 { max-width: none; }
   .panel__hlava { grid-template-columns: 1fr; }
   .panel__udaje { grid-column: 1; grid-row: auto; justify-content: start; }
