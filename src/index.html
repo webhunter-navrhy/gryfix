@@ -1,0 +1,274 @@
+{% extends "_base.html" %}
+{% set titulek = 'Gryfix Experience – zážitkové teambuildingy, Kutná Hora' %}
+{% set cesta = '' %}
+{% set o = data.obsah %}
+{% block obsah %}
+
+{# ---------- ÚVOD ---------- #}
+<section class="hero">
+  <div class="hero__foto">{{ img('les-mapa.jpg', 'Team s mapou plánuje trasu v lese', sizes='100vw') }}</div>
+  <div class="wrap hero__in">
+    <p class="stitek stitek--zlaty">Zážitkové teambuildingy · Kutná Hora</p>
+    <h1 class="hero__h1"><span>{{ o.h1[0] }}</span> <span class="hero__h1-b">{{ o.h1[1] }}</span></h1>
+    <p class="hero__uvod">{{ o.uvod|nb }}</p>
+    <div class="hero__akce">
+      <a href="#programy" class="tl tl--tyrkys">Vybrat program</a>
+      <a href="#okruhy" class="tl tl--obrys">Sestavit vlastní</a>
+    </div>
+  </div>
+  <ul class="hero__fakta wrap" role="list">
+    {% for f in o.misto_fakta %}<li>{{ f }}</li>{% endfor %}
+  </ul>
+</section>
+
+{# ---------- VIZE ---------- #}
+<section class="sekce vize" id="vize">
+  <div class="wrap vize__mrizka">
+    <div class="vize__text">
+      <p class="stitek">Naše vize</p>
+      <h2 class="vize__h2 odhal">{{ o.vize_titulek|nb }}</h2>
+      <div class="vize__odst odhal">
+        {% for p in o.vize %}<p>{{ p|nb }}</p>{% endfor %}
+      </div>
+    </div>
+    <figure class="vize__foto odhal">
+      {{ img('briefing-stodola.jpg', 'Instruktor vede briefing teamu v cihlové stodole', sizes='(min-width: 64rem) 40vw, 100vw') }}
+    </figure>
+  </div>
+</section>
+
+{# ---------- SCHOPNOSTI + TEST ---------- #}
+<section class="sekce schopnosti tmava" id="schopnosti">
+  <div class="wrap schopnosti__mrizka">
+    <div class="schopnosti__text">
+      <p class="stitek stitek--zlaty">Zkušenosti hrou</p>
+      <h2 class="odhal">Prověřte schopnosti vašich teamů</h2>
+      <ul class="proverka odhal" role="list">
+        {% for s in o.schopnosti %}<li data-schopnost="{{ s }}"><span class="proverka__box" aria-hidden="true"></span>{{ s|nb }}</li>{% endfor %}
+      </ul>
+      <p class="schopnosti__zaver">…a proměňte je v cenné zkušenosti.</p>
+    </div>
+
+    <div class="test" data-test data-sekundy="{{ o.test.sekundy }}">
+      <div class="test__hlava">
+        <p class="test__nazev">Test situační pozornosti</p>
+        <p class="test__krok" data-test-krok>Zabere půl minuty</p>
+      </div>
+      <div class="test__plocha">
+        <div class="test__foto" data-test-foto>
+          {{ img(o.test.foto, 'Instruktor ukazuje teamu první pomoc na figuríně, vedle leží lékárnička', sizes='(min-width: 64rem) 46vw, 100vw') }}
+        </div>
+        <div class="test__cas" aria-hidden="true"><span data-test-cas></span></div>
+        <div class="test__vrstva test__start" data-test-faze="start">
+          <p>Máte {{ o.test.sekundy }} sekund na fotku. Pak ji schováme a zeptáme se na tři detaily.</p>
+          <button type="button" class="tl tl--tyrkys" data-test-spustit>Spustit test</button>
+        </div>
+        {% for q in o.test.otazky %}
+        <div class="test__vrstva test__otazka" data-test-faze="q{{ loop.index0 }}" hidden>
+          <img class="test__gryf" src="{{ base }}img/gryfix-obrys.svg" alt="" width="600" height="600">
+          <p class="test__q">{{ q.q }}</p>
+          <div class="test__moznosti">
+            {% for a in q.a %}<button type="button" data-odpoved="{{ 1 if loop.index0 == q.ok else 0 }}">{{ a }}</button>{% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+        <div class="test__vrstva test__vysledek" data-test-faze="vysledek" hidden>
+          <img class="test__gryf" src="{{ base }}img/gryfix-obrys.svg" alt="" width="600" height="600">
+          <p class="test__skore"><span data-test-skore>0</span> / {{ o.test.otazky|length }}</p>
+          <p class="test__zprava" data-test-zprava></p>
+          <div class="test__akce">
+            <button type="button" class="tl tl--obrys" data-test-znovu>Zkusit znovu</button>
+            <a href="#programy" class="tl tl--tyrkys">Tohle trénujeme</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------- PROGRAMY ---------- #}
+<section class="sekce programy" id="programy">
+  <div class="wrap">
+    <div class="programy__hlava">
+      <div>
+        <p class="stitek">Programy</p>
+        <h2 class="odhal">Tři připravené programy</h2>
+      </div>
+      <p class="programy__perex odhal">Dva pobytové na dvě noci v Kutné Hoře a jeden přímo u vás ve firmě. Každý jde upravit na míru.</p>
+    </div>
+
+    <div class="taby" role="tablist" aria-label="Programy">
+      {% for p in data.programy %}
+      <button class="tab tab--{{ p.id }}" role="tab" id="tab-{{ p.id }}" aria-controls="panel-{{ p.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ 0 if loop.first else -1 }}" data-program="{{ p.id }}">
+        <span class="tab__nazev">{{ p.nazev }}</span>
+        <span class="tab__meta">{{ p.delka }} · {{ p.kapacita }}</span>
+        <span class="tab__cena">{% set c = p.cena.split(" ", 1) if p.cena.startswith("od ") else ["", p.cena] %}{% if c[0] %}{{ c[0] }} {% endif %}<span class="nw">{{ c[1] }}</span></span>
+      </button>
+      {% endfor %}
+    </div>
+
+    {% for p in data.programy %}
+    {% set ns = namespace(a=24, b=0) %}
+    {% for d in p.dny %}{% for b in d.b %}{% if b.od < ns.a %}{% set ns.a = b.od|int %}{% endif %}{% if b.do > ns.b %}{% set ns.b = b.do %}{% endif %}{% endfor %}{% endfor %}
+    {% set konec = (ns.b + 0.99)|int %}
+    <div class="panel panel--{{ p.id }}" role="tabpanel" id="panel-{{ p.id }}" aria-labelledby="tab-{{ p.id }}" {% if not loop.first %}hidden{% endif %}>
+      <div class="panel__hlava">
+        <h3 class="panel__nazev">{{ p.nazev }} <span>Experience</span></h3>
+        <p class="panel__perex">{{ p.perex|nb }}</p>
+        <dl class="panel__udaje">
+          <div><dt>Délka</dt><dd>{{ p.delka }}</dd></div>
+          <div><dt>Kapacita</dt><dd>{{ p.kapacita }}</dd></div>
+          <div><dt>Cena</dt><dd>{{ p.cena }} <small>{{ p.dph }}</small></dd></div>
+        </dl>
+      </div>
+
+      <div class="osa" style="--od: {{ ns.a }}; --hodin: {{ konec - ns.a }}; --dnu: {{ p.dny|length }}">
+        <div class="osa__hodiny" aria-hidden="true">
+          {% for h in range(ns.a, konec + 1) %}<span style="--h: {{ h - ns.a }}">{{ h }}:00</span>{% endfor %}
+        </div>
+        {% for d in p.dny %}
+        <div class="den">
+          <p class="den__nazev"><strong>{{ d.n }}</strong> {{ d.pozn if d.pozn is defined else "" }}</p>
+          <ol class="den__bloky" role="list">
+            {% for b in d.b %}
+            <li class="blok blok--{{ b.t }}{% if b.do - b.od <= 0.5 %} blok--kratky{% endif %}" style="--z: {{ b.od - ns.a }}; --d: {{ b.do - b.od }}; --i: {{ loop.index0 }}">
+              <span class="blok__cas">{{ b.od|cas }}–{{ b.do|cas }}</span>
+              <span class="blok__n">{{ b.n|nb }}</span>
+            </li>
+            {% endfor %}
+          </ol>
+        </div>
+        {% endfor %}
+        {% if p.varianty is defined %}
+        <div class="panel__varianty">
+          <p class="panel__mezititulek">Jak to může běžet</p>
+          {% for v in p.varianty %}<p class="varianta">{% if not loop.first %}<em>nebo</em>{% endif %}{{ v|nb }}</p>{% endfor %}
+          <div class="rocni">
+            <p class="rocni__nazev">{{ p.rocni.nazev }}</p>
+            <p>{{ p.rocni.text|nb }}</p>
+            <p class="rocni__cena">{{ p.rocni.cena }}</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="panel__pata">
+        <p>{{ p.vcene|nb }}</p>
+        <a href="#poptavka" class="tl tl--panel" data-poptat="{{ p.nazev }} Experience">Poptat {{ p.nazev }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{# ---------- VLASTNÍ PROGRAM ---------- #}
+<section class="sekce okruhy tmava tmava--noc" id="okruhy">
+  <div class="wrap okruhy__mrizka">
+    <div class="okruhy__text">
+      <p class="stitek stitek--zlaty">Tematické okruhy</p>
+      <h2 class="odhal">Sestavte si vlastní program</h2>
+      <p class="okruhy__perex odhal">…a užijte si teambuilding po svém, pod vedením profíků z&nbsp;oboru. Zaškrtněte, co vás zajímá, výběr se přenese do poptávky.</p>
+      <figure class="okruhy__foto odhal">{{ img('hra-telefony.jpg', 'Kooperační komunikační hra s telefony a symboly', sizes='(min-width: 64rem) 36vw, 100vw') }}</figure>
+    </div>
+    <div class="okruhy__vyber">
+      <ul class="vyber" role="list">
+        {% for k in o.okruhy %}
+        <li><label class="vyber__radek"><input type="checkbox" value="{{ k }}" data-okruh><span class="vyber__box" aria-hidden="true"></span><span class="vyber__text">{{ k|nb }}</span></label></li>
+        {% endfor %}
+        <li class="vyber__dalsi">a další podle domluvy</li>
+      </ul>
+      <div class="souhrn" data-souhrn>
+        <p><strong data-souhrn-pocet>0</strong> <span data-souhrn-slovo>okruhů vybráno</span></p>
+        <a href="#poptavka" class="tl tl--tyrkys" data-prenest>Poslat výběr do poptávky</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------- MÍSTO ---------- #}
+<section class="sekce misto" id="misto">
+  <div class="wrap">
+    <div class="misto__hlava">
+      <div>
+        <p class="stitek">Místo</p>
+        <h2 class="odhal">Kutná Hora</h2>
+      </div>
+      <ul class="misto__fakta odhal" role="list">
+        <li><strong>Soukromí, wellness, čistota</strong></li>
+        <li><strong>Kapacita až 20 lidí</strong></li>
+        <li><strong>Strava v ceně pobytu</strong></li>
+      </ul>
+    </div>
+    <div class="galerie">
+      {% for m in data.misto %}
+      <figure class="galerie__f galerie__f--{{ loop.index }} odhal">
+        {{ img(m.f, m.alt, sizes='(min-width: 64rem) 50vw, 100vw') }}
+        <figcaption>{{ m.p }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---------- ODBORNOST ---------- #}
+<section class="sekce odbornost tmava" id="odbornost">
+  <img class="odbornost__gryf" src="{{ base }}img/gryfix-obrys.svg" alt="" width="600" height="600" loading="lazy">
+  <div class="wrap odbornost__mrizka">
+    <div>
+      <p class="stitek stitek--zlaty">Odbornost</p>
+      <h2 class="odbornost__h2 odhal">{{ o.odbornost_uvod|nb }}</h2>
+      <ul class="obory" role="list">
+        {% for x in o.odbornost %}<li class="odhal">{{ x|nb }}</li>{% endfor %}
+        <li class="obory__dalsi odhal">a další</li>
+      </ul>
+    </div>
+    <figure class="odbornost__foto odhal">{{ img('les-soumrak.jpg', 'Les za soumraku s rozsvícenými lucernami', sizes='(min-width: 64rem) 40vw, 100vw') }}</figure>
+  </div>
+</section>
+
+{# ---------- POPTÁVKA ---------- #}
+<section class="sekce poptavka" id="poptavka">
+  <div class="wrap poptavka__mrizka">
+    <div class="poptavka__text">
+      <p class="stitek">Poptávka</p>
+      <h2>Domluvme program pro váš team</h2>
+      <p class="poptavka__perex">Napište, kolik vás bude a co od teambuildingu čekáte. Program připravíme na míru.</p>
+      <div class="kontakt">
+        <p class="kontakt__jmeno">{{ site.kontakt.osoba }}</p>
+        <p><a href="tel:+420{{ site.kontakt.telefon|replace(' ', '') }}">{{ site.kontakt.telefon }}</a></p>
+        <p><a href="mailto:{{ site.kontakt.email }}">{{ site.kontakt.email }}</a></p>
+        <p class="kontakt__web">{{ site.kontakt.web }}</p>
+      </div>
+    </div>
+    <form class="formular" method="post" data-endpoint="{{ site.formular.endpoint }}" data-demo="{{ 1 if site.formular.demo or not site.formular.endpoint else 0 }}">
+      <fieldset class="formular__program">
+        <legend>Program</legend>
+        {% for p in data.programy %}<label class="volba"><input type="radio" name="program" value="{{ p.nazev }} Experience" {% if loop.first %}checked{% endif %}><span>{{ p.nazev }}</span></label>{% endfor %}
+        <label class="volba"><input type="radio" name="program" value="Roční spolupráce"><span>Roční spolupráce</span></label>
+        <label class="volba"><input type="radio" name="program" value="Vlastní program"><span>Vlastní program</span></label>
+      </fieldset>
+      <div class="formular__okruhy" data-form-okruhy hidden>
+        <p><span>Vybrané okruhy:</span> <strong data-form-okruhy-text></strong> <a href="#okruhy">upravit</a></p>
+        <input type="hidden" name="okruhy" data-form-okruhy-pole>
+      </div>
+      <div class="formular__radek">
+        <label>Jméno <input name="jmeno" autocomplete="name" required></label>
+        <label>Firma <input name="firma" autocomplete="organization"></label>
+      </div>
+      <div class="formular__radek">
+        <label>E-mail <input name="email" type="email" autocomplete="email" required></label>
+        <label>Telefon <input name="telefon" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="formular__radek">
+        <label>Počet lidí <input name="pocet" type="number" min="1" max="200" inputmode="numeric"></label>
+        <label>Termín <input name="termin" placeholder="např. jaro 2027"></label>
+      </div>
+      <label>Zpráva <textarea name="zprava" rows="4"></textarea></label>
+      <div class="past" aria-hidden="true"><label>Nevyplňovat <input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="_subject" value="{{ site.formular.predmet }}">
+      <button type="submit" class="tl tl--svestka">Odeslat poptávku</button>
+      <p class="formular-stav" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+{% endblock %}
